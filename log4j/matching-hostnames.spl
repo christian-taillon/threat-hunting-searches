@@ -1,0 +1,8 @@
+| tstats summariesonly=t count from datamodel=Web by Web.dest Web.src Web.dest_port Web.action Web.vendor_product Web.url
+| search
+    [| inputlookup log4j-net-threats.csv
+    | rename threat_host as Web.url
+    | fields Web.url ]
+| sort - count
+| eval threat_host = 'Web.url'
+| lookup log4j-net-threats.csv  threat_host as threat_host

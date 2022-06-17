@@ -1,0 +1,8 @@
+| tstats summariesonly=t count from datamodel=Network_Traffic where * by All_Traffic.dest All_Traffic.src All_Traffic.dest_port  All_Traffic.action All_Traffic.vendor_product
+| search
+    [| inputlookup log4j-net-threats.csv
+    | rename threat_host as All_Traffic.dest
+    | fields All_Traffic.dest ]
+| sort - count
+| eval threat_host = 'All_Traffic.dest'
+| lookup log4j-net-threats.csv threat_host as threat_host

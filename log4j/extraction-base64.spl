@@ -1,0 +1,4 @@
+... search
+ | rex field=foo ":(?:\/){1,2}(?<threat>(?<threat_host>(?:[[:alnum:]]|\-|\.){1,})[\/|:](?:(?<threat_port>[0-9]{2,6})\/(?<threat_content>(?:[[:alnum:]]|\.){1,})))"
+ | fields - foo _time
+ | outputlookup log4j-base64-threats.csv

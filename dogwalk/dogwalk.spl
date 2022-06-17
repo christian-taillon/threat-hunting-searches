@@ -1,0 +1,4 @@
+(((CommandHistory IN ("*af *","*ts_AUTO","*param","*skip","*IT_BrowseForFile","*IT_RebrowseForFile","*..\\*","*../*","*/cab*")
+    OR (CommandLine IN ("*af *","*ts_AUTO*","*param*","*skip*","*IT_BrowseForFile*","*IT_RebrowseForFile*","*..\\*","*../*","*/cab*")))
+    AND ImageFileName="*\\msdt.exe")
+    AND NOT (((CommandHistory IN ("*NetworkDiagnostics*")) OR (CommandLine IN ("*NetworkDiagnostics*")))))

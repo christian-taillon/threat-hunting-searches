@@ -1,0 +1,5 @@
+... search
+ | rex field=foo ":(?:\/){1,2}(?<threat>(?<threat_host>(?:[[:alnum:]]|\-|\.){1,})[\/|:](?:(?<threat_port>[0-9]{2,6})\/(?<threat_content>(?:[[:alnum:]]|\.){1,})))"
+ | fields - foo _time
+ | table elastic_source threat threat_host threat_port threat_content
+ | outputlookup log4j-net-threats.csv
